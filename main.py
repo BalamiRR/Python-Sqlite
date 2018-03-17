@@ -1,29 +1,19 @@
-import sqlite3 as sql
-import random as rd
-import time
-import datetime
+import sqlite3
 
+con = sqlite3.connect("Database.db")
 
-con = sql.connect("Time.db")
 cursor = con.cursor()
 
 def createTable():
-    cursor.execute("CREATE TABLE IF NOT EXISTS Tablo1 (times REAL,date TEXT,key TEXT,value REAL)")
+    cursor.execute("CREATE TABLE Students (name TEXT,surName TEXT,number INT,grades INT)")
+    con.cursor()
+    con.close()
 
-def addrandomly():
-    times = time.time()
-    date = str(datetime.datetime.fromtimestamp(times).strftime("%Y-%M-%D   %H-%M-%S"))
-    key = "Python Sqlite"
-    value = rd.randrange(0,10)
-    cursor.execute("INSERT INTO Tablo1 (times,date,key,value) VALUES(?,?,?,?)",(times,date,key,value))
+def addValue():
+#seçili veritabanına veri ekliyoruz.
+    cursor.execute("INSERT INTO Students VALUES('Mustafa Kemal','Ataturk','1','5.0')")
     con.commit()
+    con.close()
 
-createTable()
 
-i=0
-while(i<10):
-    addrandomly()
-    time.sleep(1)
-    i+=1
-
-con.close()
+addValue()
