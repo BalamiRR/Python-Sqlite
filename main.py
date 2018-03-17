@@ -15,5 +15,5 @@ def addValue():
     con.close()
 
 
-
+createTable()
 addValue()
